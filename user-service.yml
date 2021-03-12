@@ -1,2 +1,6 @@
 server:
-  port: 9090
+  port: 8080
+  
+my:
+  schrodinger:
+    value: default
