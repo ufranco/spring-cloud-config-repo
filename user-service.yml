@@ -3,4 +3,4 @@ server:
   
 my:
   schrodinger:
-    value: default
+    value: not-default
