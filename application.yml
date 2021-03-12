@@ -1,7 +1,7 @@
 spring:
   platform: mysql
   datasource:
-    url: jdbc:mysql://localhost:3306/freecodecampexample
+    url: jdbc:mysql://localhost:3306
     username: root
     password: admin
     hikari:
