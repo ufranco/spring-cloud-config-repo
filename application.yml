@@ -1,6 +1,1 @@
-eureka:
-  client:
-    fetch-registry: false
-    register-with-eureka: false
-
 server.error.include-message: always
