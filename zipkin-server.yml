@@ -12,4 +12,3 @@ spring:
     traceId128: true
     sampler:
       probability: 1.0
-    propagation-keys: user_name
