@@ -1,0 +1,17 @@
+server.port: 9191
+
+spring:
+  cloud:
+    gateway:
+      routes:
+          id: user-service
+          uri: lb://user-service
+          predicates: 
+            Path=/user/**
+          id: post-service
+          uri:  lb://post-service
+          predicatres: Path=/post/**
+          
+           
+             
+
