@@ -10,7 +10,7 @@ spring:
         predicates: 
         - Path=/user/**
         filters:
-        - name: CircuitBreaker
+        - name: FallbackController
           args:
             name: user-service
             fallbackuri: forward:/userServiceFallback
@@ -19,7 +19,7 @@ spring:
         predicates: 
         - Path=/post/**
         filters:
-        - name: CircuitBreaker
+        - name: FallbackController
           args:
             name: post-service
             fallbackuri: forward:/postServiceFallback
