@@ -8,13 +8,41 @@ spring:
       - id: user-service
         uri: lb://user-service
         predicates: 
-          Path=/user/**
+        - Path=/user/**
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: user-service
+            fallbackuri: forward:/userServiceFallback
       - id: post-service
         uri:  lb://post-service
-        predicatres: Path=/post/**
+        predicates: 
+        - Path=/post/**
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: post-service
+            fallbackuri: forward:/postServiceFallback
 
-
-          
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+          slidingWindowSize: 100
+          permittedNumberOfCallsInHalfOpenState: 10
+          waitDurationInOpenState: 10000
+          failureRateThreshold: 60
+          eventConsumerBufferSize: 10
+          registerHealthIndicator: true
+      someShared:
+          slidingWindowSize: 50
+          permittedNumberOfCallsInHalfOpenState: 10
+    instances:
+        user-service:
+            baseConfig: default
+            waitDurationInOpenState: 5000
+        post-service:
+            baseConfig: someShared
            
              
 
