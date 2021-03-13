@@ -1,0 +1,6 @@
+server:
+  port: 8090
+
+spring:
+  zipkin:
+    baseurl: http://localhost:9411/
