@@ -9,6 +9,7 @@ spring:
         uri: lb://user-service
         predicates: 
         - Path=/api/v1/user**
+        - Path=/api/v1/user/**
         filters:
         - name: FallbackController
           args:
@@ -18,6 +19,7 @@ spring:
         uri:  lb://post-service
         predicates: 
         - Path=/api/v1/post**
+        - Path=/api/v1/post/**
         filters:
         - name: FallbackController
           args:
