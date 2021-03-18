@@ -8,8 +8,7 @@ spring:
       - id: user-service-route
         uri: lb://user-service
         predicates: 
-        - Path=/api/v1/user/**
-        - Path=/api/v1/user**
+        - Path=/api/v1/user/**, /user/**
         filters:
         - name: FallbackController
           args:
