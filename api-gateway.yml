@@ -10,19 +10,19 @@ spring:
         predicates: 
         - Path=/api/v1/user/**, /user/**
         filters:
-        - name: FallbackController
+        - name: CircuitBreaker
           args:
-            name: user-service
-            fallbackuri: forward:/userServiceFallback
+            name: user-service-fallback
+            fallbackuri: forward:/fallback/user
       - id: post-service-route
         uri:  lb://post-service
         predicates: 
         - Path=/api/v1/post**, /post/**
         filters:
-        - name: FallbackController
+        - name: CircuitBreaker
           args:
-            name: post-service
-            fallbackuri: forward:/postServiceFallback
+            name: post-service-fallback
+            fallbackuri: forward:/fallback/post
 
 resilience4j:
   circuitbreaker:
