@@ -5,24 +5,24 @@ spring:
         locator:
           enabled: true
       routes:
-      - id: user-service-route
-        uri: lb://user-service
-        predicates: 
-        - Path=/api/v1/user/**, /user/**
-        filters:
-        - name: CircuitBreaker
-          args:
-            name: user-service-fallback
-            fallbackuri: forward:/fallback/user
-      - id: post-service-route
-        uri:  lb://post-service
-        predicates: 
-        - Path=/api/v1/post**, /post/**
-        filters:
-        - name: CircuitBreaker
-          args:
-            name: post-service-fallback
-            fallbackuri: forward:/fallback/post
+        - id: user-ms
+            uri: lb://user-ms
+            predicates: 
+              - Path=/api/v1/user/**, /user/**
+            filters:
+              - name: CircuitBreaker
+                args:
+                  name: user-ms-fallback
+                  fallbackuri: forward:/fallback/userms
+        - id: mail-ms
+            uri:  lb://mail-ms
+            predicates: 
+              - Path=/api/v1/post**, /post/**
+            filters:
+              - name: CircuitBreaker
+                args:
+                  name: mail-ms-fallback
+                  fallbackuri: forward:/fallback/mailms
 
 resilience4j:
   circuitbreaker:
